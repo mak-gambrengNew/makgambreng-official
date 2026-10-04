@@ -1,0 +1,1 @@
+MAK GAMBRENG PWA\n\nDeploy seluruh isi folder ini ke hosting HTTPS (Vercel/Netlify/Cloudflare Pages). Jangan membuka index.html langsung dari file manager untuk menguji instalasi PWA; service worker membutuhkan HTTPS atau localhost.\n\nFile utama: index.html | manifest.webmanifest | sw.js | assets/\n
