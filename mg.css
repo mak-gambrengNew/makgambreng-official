@@ -1,0 +1,58 @@
+/* Mak-Gambreng — revisi: splash per-sesi, animasi masuk halaman, kartu bergambar. */
+
+/* ---------- Splash dilewati bila sudah tampil di sesi ini ---------- */
+html.mg-no-intro .splash{display:none!important}
+
+/* ---------- Animasi masuk halaman ---------- */
+:root{--mg-ease:cubic-bezier(0.22,1,0.36,1);--mg-dur:480ms;--mg-rise:14px;--mg-step:60ms}
+@keyframes mgIn{from{opacity:0;transform:translate3d(0,var(--mg-rise),0)}to{opacity:1;transform:translate3d(0,0,0)}}
+
+/* Sebelum animasi mulai (mis. saat splash tampil): konten disembunyikan tanpa mengubah layout */
+html.mg-anim:not(.mg-ready):not(.mg-no-intro) main .wrap>:not(.grid),
+html.mg-anim:not(.mg-ready):not(.mg-no-intro) main .grid>*{opacity:0}
+
+/* Animasi: judul, hero, foto, panel, tombol, dan kartu (stagger) */
+html.mg-anim.mg-ready main .wrap>:not(.grid),
+html.mg-anim.mg-no-intro main .wrap>:not(.grid),
+html.mg-anim.mg-ready main .grid>*,
+html.mg-anim.mg-no-intro main .grid>*{
+  animation:mgIn var(--mg-dur) var(--mg-ease) backwards;
+  animation-delay:calc(var(--i,0)*var(--mg-step) + var(--b,0ms));
+}
+main .grid>*{--b:140ms}
+main .wrap>:nth-child(2),main .grid>:nth-child(2){--i:1}
+main .wrap>:nth-child(3),main .grid>:nth-child(3){--i:2}
+main .wrap>:nth-child(4),main .grid>:nth-child(4){--i:3}
+main .wrap>:nth-child(5),main .grid>:nth-child(5){--i:4}
+main .wrap>:nth-child(6),main .grid>:nth-child(6){--i:5}
+main .grid>:nth-child(7){--i:6}
+main .grid>:nth-child(8){--i:7}
+main .grid>:nth-child(n+9){--i:8}
+main .wrap>:nth-child(n+7){--i:6}
+
+@media(prefers-reduced-motion:reduce){
+  main .wrap>:not(.grid),main .grid>*{opacity:1!important;animation:none!important}
+}
+
+/* ---------- Kartu bergambar (aset eksternal assets/cards/) ---------- */
+.tile-media{
+  position:relative;overflow:hidden;
+  margin:-24px -24px 18px;aspect-ratio:4/3;
+  border-radius:20px 20px 0 0;
+  background:linear-gradient(135deg,#fff3c4 0%,#f8f3e8 55%,#f7c92899 100%);
+}
+.tile-media img{
+  position:absolute;inset:0;width:100%;height:100%;
+  object-fit:cover;object-position:var(--card-pos,50% 50%);
+  opacity:0;transition:opacity .35s ease;
+}
+.tile-media.is-loaded img{opacity:1}
+/* Fallback bila file gambar tidak ada / gagal dimuat: warna brand + logo, ukuran kartu tetap */
+.tile-media.is-fallback img{display:none}
+.tile-media.is-fallback:after{
+  content:"";position:absolute;left:50%;top:50%;width:34%;aspect-ratio:1;
+  transform:translate(-50%,-50%);border-radius:50%;
+  background:url(assets/logo.png) center/cover no-repeat;
+  box-shadow:0 0 0 1px #b18b2b66,0 10px 24px #8c6a2224;
+}
+@media(max-width:760px){.tile-media{aspect-ratio:16/10}}
