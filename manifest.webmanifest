@@ -1,7 +1,7 @@
 {
   "name": "Mak Gambreng — Teh Solo",
   "short_name": "Mak Gambreng",
-  "start_url": "./",
+  "start_url": "./index.html",
   "display": "standalone",
   "background_color": "#fffdf8",
   "theme_color": "#f7c928",

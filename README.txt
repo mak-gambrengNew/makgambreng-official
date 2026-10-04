@@ -1,1 +1,1 @@
-MAK GAMBRENG PWA\n\nDeploy seluruh isi folder ini ke hosting HTTPS (Vercel/Netlify/Cloudflare Pages). Jangan membuka index.html langsung dari file manager untuk menguji instalasi PWA; service worker membutuhkan HTTPS atau localhost.\n\nFile utama: index.html | manifest.webmanifest | sw.js | assets/\n
+Mak Gambreng PWA mobile-first. Halaman: index.html, produk.html, cerita.html, gerai.html, kemitraan.html. Menu dan daftar gerai ditampilkan tanpa harga. Informasi alamat/jam/kontak gerai belum ditambahkan karena belum tersedia. Deploy seluruh folder ke hosting HTTPS.
